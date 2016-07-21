@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<div class="banner">
+      <div id="slide-holder">
+        {% for ad in ad_list %}
+        <div id="slide-runner"> <a href="/" target="_blank"><img id="{{ ad.index }}" src="/uploads/{{ ad.image_url }}"  alt="" /></a>
+          <div id="slide-controls">
+            <p id="slide-client" class="text"><strong></strong><span></span></p>
+            <p id="slide-desc" class="text">{{ ad.description }}</p>
+            <p id="slide-nav"><a id="slide-link-0" href="#" onclick="slider.slide(0);return false;" onfocus="this.blur();" class="on">1</a><a id="slide-link-1" href="#" onclick="slider.slide(1);return false;" onfocus="this.blur();" class="">2</a><a id="slide-link-2" href="#" onclick="slider.slide(2);return false;" onfocus="this.blur();" class="">3</a><a id="slide-link-3" href="#" onclick="slider.slide(3);return false;" onfocus="this.blur();" class="">4</a></p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <script>
+    if(!window.slider) {
+    var slider={};
+  }
+  slider.data= [
+    {% for ad in ad_list %}
+    {
+        "id":"{{ ad.index }}", // 与slide-runner中的img标签id对应
+        "client":"{{ ad.title }}",
+        "desc":"{{ ad.description }}" //这里修改描述
+    },
+    {% endfor %}
+  ];
+    </script>
+</div>
+
+    <!-- banner代码 结束 -->
